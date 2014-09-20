@@ -1,0 +1,10 @@
+# Ignore Eclipse files
+.buildpath
+.project
+.settings/
+
+vendor/
+
+composer.lock
+/phpunit.xml
+/build
