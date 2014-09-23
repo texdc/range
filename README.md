@@ -13,6 +13,7 @@ range
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/texdc/range/master.svg?style=flat-square)](https://travis-ci.org/texdc/range)
+[![Coverage Status](http://img.shields.io/coveralls/texdc/range.svg?style=flat-square)](http://img.shields.io/coveralls/texdc/range.svg)
 
 install
 -------
@@ -20,7 +21,7 @@ Composer:
 ```json
 {
     "require": {
-        "texdc/range": "dev-master"
+        "texdc/range": "@stable"
     }
 }
 ```
