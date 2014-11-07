@@ -122,9 +122,7 @@ trait RangeTrait
         if ($this->isEmpty() || $another->isEmpty()) {
             return false;
         }
-        $inverted1 = $this->isInverted();
-        $inverted2 = $another->isInverted();
-        return ($inverted1 && !$inverted2) || ($inverted2 && !$inverted1);
+        return ($this->isInverted() != $another->isInverted());
     }
 
     /**
