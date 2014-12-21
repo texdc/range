@@ -2,12 +2,10 @@
 
 namespace texdc\range\test\asset;
 
-use texdc\range\RangeInterface;
+use texdc\range\AbstractRange;
 
-class RangeTraitStub implements RangeInterface
+class RangeStub extends AbstractRange
 {
-    use \texdc\range\RangeTrait;
-
     public function __construct($aStart, $anEnd)
     {
         $this->start = $aStart;

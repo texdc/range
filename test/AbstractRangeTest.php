@@ -3,19 +3,26 @@
 namespace texdc\range\test;
 
 use PHPUnit_Framework_TestCase as TestCase;
-use texdc\range\test\asset\RangeTraitStub;
 use texdc\range\RangeInterface;
+use texdc\range\AbstractRange;
+use texdc\range\test\asset\RangeStub;
 
-class RangeTraitTest extends TestCase
+class AbstractRangeTest extends TestCase
 {
-    public function testTraitExists()
+    public function testClassExists()
     {
-        $this->assertTrue(trait_exists('texdc\\range\\RangeTrait'));
+        $this->assertTrue(class_exists('texdc\\range\\AbstractRange'));
+    }
+
+    public function testClassInstanceOfRangeInterface()
+    {
+        $range = RangeStub::void();
+        $this->assertInstanceOf('texdc\range\RangeInterface', $range);
     }
 
     public function testReverseReturnsNewRange()
     {
-        $range = new RangeTraitStub(1, 3);
+        $range    = new RangeStub(1, 3);
         $reversed = $range->reverse();
         $this->assertNotSame($range, $reversed);
         $this->assertTrue($reversed->isInverted());
@@ -23,47 +30,47 @@ class RangeTraitTest extends TestCase
 
     public function testIsEmptyReturnsBool()
     {
-        $range1 = RangeTraitStub::void();
-        $range2 = new RangeTraitStub(3, 1);
+        $range1 = RangeStub::void();
+        $range2 = new RangeStub(3, 1);
         $this->assertTrue($range1->isEmpty());
         $this->assertFalse($range2->isEmpty());
     }
 
     public function testIsInvertedReturnsBool()
     {
-        $range1 = new RangeTraitStub(5, 1);
-        $range2 = new RangeTraitStub(0, 4);
+        $range1 = new RangeStub(5, 1);
+        $range2 = new RangeStub(0, 4);
         $this->assertTrue($range1->isInverted());
         $this->assertFalse($range2->isInverted());
     }
 
     public function testIsContraryToReturnsTrueWithNonEmptyRanges()
     {
-        $range1 = new RangeTraitStub(5, 1);
-        $range2 = new RangeTraitStub(2, 4);
+        $range1 = new RangeStub(5, 1);
+        $range2 = new RangeStub(2, 4);
         $this->assertTrue($range1->isContraryTo($range2));
     }
 
     public function testIsContraryToReturnsFalseWithAnEmptyRange()
     {
-        $range1 = RangeTraitStub::void();
-        $range2 = new RangeTraitStub(-1, 1);
+        $range1 = RangeStub::void();
+        $range2 = new RangeStub(-1, 1);
         $this->assertFalse($range1->isContraryTo($range2));
     }
 
     public function testContainsReturnsBool()
     {
-        $range1 = RangeTraitStub::void();
-        $range2 = new RangeTraitStub(-1, 1);
+        $range1 = RangeStub::void();
+        $range2 = new RangeStub(-1, 1);
         $this->assertFalse($range1->contains($range2));
         $this->assertTrue($range2->contains($range1));
     }
 
     public function testOverlapsReturnsBool()
     {
-        $range1 = RangeTraitStub::void();
-        $range2 = new RangeTraitStub(2, 4);
-        $range3 = new RangeTraitStub(3, 1);
+        $range1 = RangeStub::void();
+        $range2 = new RangeStub(2, 4);
+        $range3 = new RangeStub(3, 1);
         $this->assertFalse($range1->overlaps($range2));
         $this->assertTrue($range2->overlaps($range3));
     }
@@ -93,9 +100,9 @@ class RangeTraitTest extends TestCase
     public function getPreceedingRanges()
     {
         return [
-            [new RangeTraitStub(3, 1), new RangeTraitStub(4, 7)],
-            [new RangeTraitStub(1, 3), new RangeTraitStub(4, 7)],
-            [new RangeTraitStub(3, 1), new RangeTraitStub(7, 4)],
+            [new RangeStub(3, 1), new RangeStub(4, 7)],
+            [new RangeStub(1, 3), new RangeStub(4, 7)],
+            [new RangeStub(3, 1), new RangeStub(7, 4)],
         ];
     }
 
@@ -116,10 +123,10 @@ class RangeTraitTest extends TestCase
     public function getBeginsRanges()
     {
         return [
-            [new RangeTraitStub(1, 3), new RangeTraitStub(1, 5), true],
-            [new RangeTraitStub(1, 3), new RangeTraitStub(1, 3), false],
-            [new RangeTraitStub(3, 1), new RangeTraitStub(1, 5), true],
-            [new RangeTraitStub(3, 1), new RangeTraitStub(1, 3), false],
+            [new RangeStub(1, 3), new RangeStub(1, 5), true],
+            [new RangeStub(1, 3), new RangeStub(1, 3), false],
+            [new RangeStub(3, 1), new RangeStub(1, 5), true],
+            [new RangeStub(3, 1), new RangeStub(1, 3), false],
         ];
     }
 
@@ -140,45 +147,45 @@ class RangeTraitTest extends TestCase
     public function getEndsRanges()
     {
         return [
-            [new RangeTraitStub(3, 5), new RangeTraitStub(1, 5), true],
-            [new RangeTraitStub(1, 3), new RangeTraitStub(1, 3), false],
-            [new RangeTraitStub(5, 3), new RangeTraitStub(1, 5), true],
-            [new RangeTraitStub(3, 1), new RangeTraitStub(1, 3), false],
+            [new RangeStub(3, 5), new RangeStub(1, 5), true],
+            [new RangeStub(1, 3), new RangeStub(1, 3), false],
+            [new RangeStub(5, 3), new RangeStub(1, 5), true],
+            [new RangeStub(3, 1), new RangeStub(1, 3), false],
         ];
     }
 
     public function testAbutsChecksContraryRanges()
     {
-        $range1 = new RangeTraitStub(2, 0);
-        $range2 = new RangeTraitStub(2, 4);
+        $range1 = new RangeStub(2, 0);
+        $range2 = new RangeStub(2, 4);
         $this->assertTrue($range1->abuts($range2));
     }
 
     public function testAbutsChecksSimilarRanges()
     {
-        $range1 = new RangeTraitStub(4, 5);
-        $range2 = new RangeTraitStub(2, 4);
+        $range1 = new RangeStub(4, 5);
+        $range2 = new RangeStub(2, 4);
         $this->assertTrue($range1->abuts($range2));
     }
 
     public function testFindGapToReturnsEmptyRangeWithAbutal()
     {
-        $range1 = new RangeTraitStub(4, 5);
-        $range2 = new RangeTraitStub(2, 4);
+        $range1 = new RangeStub(4, 5);
+        $range2 = new RangeStub(2, 4);
         $this->assertTrue($range1->findGapTo($range2)->isEmpty());
     }
 
     public function testFindGapToReturnsEmptyRangeWithContained()
     {
-        $range1 = new RangeTraitStub(0, 0);
-        $range2 = new RangeTraitStub(-1, 1);
+        $range1 = new RangeStub(0, 0);
+        $range2 = new RangeStub(-1, 1);
         $this->assertTrue($range1->findGapTo($range2)->isEmpty());
     }
 
     public function testFindGapToReturnsEmptyRangeWithOverlap()
     {
-        $range1 = new RangeTraitStub(3, 5);
-        $range2 = new RangeTraitStub(2, 4);
+        $range1 = new RangeStub(3, 5);
+        $range2 = new RangeStub(2, 4);
         $this->assertTrue($range1->findGapTo($range2)->isEmpty());
     }
 
@@ -197,22 +204,22 @@ class RangeTraitTest extends TestCase
     public function getGappedContraryRanges()
     {
         return [
-            [new RangeTraitStub(7, 5), new RangeTraitStub(2, 4)],
-            [new RangeTraitStub(5, 7), new RangeTraitStub(3, 0)],
+            [new RangeStub(7, 5), new RangeStub(2, 4)],
+            [new RangeStub(5, 7), new RangeStub(3, 0)],
         ];
     }
 
     public function testFindGapToReturnsNonEmptyRangeWithFollowing()
     {
-        $range1 = new RangeTraitStub(0, 1);
-        $range2 = new RangeTraitStub(2, 4);
+        $range1 = new RangeStub(0, 1);
+        $range2 = new RangeStub(2, 4);
         $this->assertFalse($range1->findGapTo($range2)->isEmpty());
     }
 
     public function testFindGapToReturnsNonEmptyRangeWithPreceeding()
     {
-        $range1 = new RangeTraitStub(2, 4);
-        $range2 = new RangeTraitStub(0, 1);
+        $range1 = new RangeStub(2, 4);
+        $range2 = new RangeStub(0, 1);
         $this->assertFalse($range1->findGapTo($range2)->isEmpty());
     }
 
@@ -226,43 +233,43 @@ class RangeTraitTest extends TestCase
         RangeInterface $range2,
         RangeInterface $expected
     ) {
-        $merged = RangeTraitStub::merge($range1, $range2);
+        $merged = RangeStub::merge($range1, $range2);
         $this->assertEquals($expected, $merged);
     }
 
     public function getCongruentRanges()
     {
         return [
-            [new RangeTraitStub(-1, 5), new RangeTraitStub(0, 3), new RangeTraitStub(-1, 5)],
-            [RangeTraitStub::void(), new RangeTraitStub(-1, 1), new RangeTraitStub(-1, 1)],
-            [new RangeTraitStub(3, 0), new RangeTraitStub(2, 4), new RangeTraitStub(0, 4)],
-            [new RangeTraitStub(0, 3), new RangeTraitStub(4, 2), new RangeTraitStub(0, 4)],
-            [new RangeTraitStub(-1, 1), new RangeTraitStub(0, 5), new RangeTraitStub(-1, 5)],
-            [new RangeTraitStub(-1, 5), new RangeTraitStub(5, 7), new RangeTraitStub(-1, 7)],
-            [new RangeTraitStub(4, 7), new RangeTraitStub(-1, 4), new RangeTraitStub(-1, 7)],
+            [new RangeStub(-1, 5), new RangeStub(0, 3), new RangeStub(-1, 5)],
+            [RangeStub::void(), new RangeStub(-1, 1), new RangeStub(-1, 1)],
+            [new RangeStub(3, 0), new RangeStub(2, 4), new RangeStub(0, 4)],
+            [new RangeStub(0, 3), new RangeStub(4, 2), new RangeStub(0, 4)],
+            [new RangeStub(-1, 1), new RangeStub(0, 5), new RangeStub(-1, 5)],
+            [new RangeStub(-1, 5), new RangeStub(5, 7), new RangeStub(-1, 7)],
+            [new RangeStub(4, 7), new RangeStub(-1, 4), new RangeStub(-1, 7)],
         ];
     }
 
     public function testMergeRequiresCongruentRanges()
     {
         $this->setExpectedException('DomainException', 'Ranges must be congruent');
-        RangeTraitStub::merge(RangeTraitStub::void(), new RangeTraitStub(1, 5));
+        RangeStub::merge(RangeStub::void(), new RangeStub(1, 5));
     }
 
     public function testCombineRequiresRangeInstances()
     {
         $this->setExpectedException('DomainException');
-        RangeTraitStub::combine([1, 2, 4]);
+        RangeStub::combine([1, 2, 4]);
     }
 
     public function testCombineAggregatesListedRanges()
     {
         $rangeList = [
-            new RangeTraitStub(-1, 1),
-            new RangeTraitStub(0, 5),
-            new RangeTraitStub(5, 7)
+            new RangeStub(-1, 1),
+            new RangeStub(0, 5),
+            new RangeStub(5, 7)
         ];
-        $combined = RangeTraitStub::combine($rangeList);
+        $combined = RangeStub::combine($rangeList);
         $this->assertEquals(-1, $combined->getStart());
         $this->assertEquals(7, $combined->getEnd());
     }

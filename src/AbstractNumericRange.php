@@ -16,10 +16,8 @@ use InvalidArgumentException;
  *
  * @author George D. Cooksey, III
  */
-abstract class AbstractNumericRange implements NumericRangeInterface
+abstract class AbstractNumericRange extends AbstractRange implements NumericRangeInterface
 {
-    use RangeTrait;
-
     /**
      * @param  number $aValue
      * @return self
