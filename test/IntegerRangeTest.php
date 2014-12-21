@@ -12,6 +12,12 @@ class IntegerRangeTest extends TestCase
         $this->assertTrue(class_exists('texdc\range\IntegerRange'));
     }
 
+    public function testClassExtendsAbstractNumericRange()
+    {
+        $range = IntegerRange::void();
+        $this->assertInstanceOf('texdc\range\AbstractNumericRange', $range);
+    }
+
     public function testConstructCastsToInt()
     {
         $range = new IntegerRange('1', 5.23);
