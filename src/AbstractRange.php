@@ -1,6 +1,6 @@
 <?php
 /**
- * RangeTrait.php
+ * AbstractRange.php
  *
  * @copyright 2014 George D. Cooksey, III
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
@@ -16,7 +16,7 @@ use DomainException;
  * @author   George D. Cooksey, III
  * @internal A trait is used to allow type-hinting to 'self' for multiple implementations.
  */
-trait RangeTrait
+abstract class AbstractRange implements RangeInterface
 {
     /**#@+
      * @var mixed
@@ -92,12 +92,6 @@ trait RangeTrait
     }
 
     /**
-     * @param  mixed $aValue implied - not specified to allow type hinting
-     * @return bool
-     */
-    abstract public function includes();
-
-    /**
      * @return bool
      */
     public function isEmpty()
@@ -122,9 +116,7 @@ trait RangeTrait
         if ($this->isEmpty() || $another->isEmpty()) {
             return false;
         }
-        $inverted1 = $this->isInverted();
-        $inverted2 = $another->isInverted();
-        return ($inverted1 && !$inverted2) || ($inverted2 && !$inverted1);
+        return ($this->isInverted() != $another->isInverted());
     }
 
     /**

@@ -12,6 +12,12 @@ class FloatRangeTest extends TestCase
         $this->assertTrue(class_exists('texdc\range\FloatRange'));
     }
 
+    public function testClassExtendsAbstractNumericRange()
+    {
+        $range = FloatRange::void();
+        $this->assertInstanceOf('texdc\range\AbstractNumericRange', $range);
+    }
+
     public function testConstructorCastsToFloat()
     {
         $range = new FloatRange('1', 53);

@@ -18,10 +18,8 @@ use InvalidArgumentException;
  *
  * @author George D. Cooksey, III
  */
-abstract class AbstractDateRange implements DateRangeInterface
+abstract class AbstractDateRange extends AbstractRange implements DateRangeInterface
 {
-    use RangeTrait;
-
     /**#@+
      * @var string
      */
