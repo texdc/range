@@ -1,6 +1,6 @@
 <?php
 /**
- * NumericRangeTrait.php
+ * AbstractNumericRange.php
  *
  * @copyright 2014 George D. Cooksey, III
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
@@ -16,10 +16,8 @@ use InvalidArgumentException;
  *
  * @author George D. Cooksey, III
  */
-trait NumericRangeTrait
+abstract class AbstractNumericRange extends AbstractRange implements NumericRangeInterface
 {
-    use RangeTrait;
-
     /**
      * @param  number $aValue
      * @return self
@@ -77,7 +75,7 @@ trait NumericRangeTrait
      * @param  number $step the interval amount
      * @return ArrayIterator
      */
-    public function getIterator($step = NumericRangeInterface::DEFAULT_STEP)
+    public function getIterator($step = self::DEFAULT_STEP)
     {
         if (!is_numeric($step)) {
             throw new InvalidArgumentException(
