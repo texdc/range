@@ -13,6 +13,7 @@
         "phpunit/phpunit": "@stable",
         "satooshi/php-coveralls": "~0.6",
         "squizlabs/php_codesniffer": "~1.4",
+        "phpmd/phpmd": "~2.0",
         "halleck45/phpmetrics": "*"
     },
     "autoload": {
