@@ -11,7 +11,7 @@ And the skies are not cloudy all day.
 The inspiration for this library came from a discussion by [Martin Fowler](http://www.martinfowler.com/ap2/range.html).
 Sadly, that link is now dead.  If you find it's replacement, please let me know.
 
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://img.shields.io/travis/texdc/range/master.svg?style=flat-square)](https://travis-ci.org/texdc/range)
 [![Coverage Status](http://img.shields.io/coveralls/texdc/range.svg?style=flat-square)](http://img.shields.io/coveralls/texdc/range.svg)
 
@@ -26,7 +26,7 @@ Composer:
 
 examples
 --------
-#####Ranges
+##### Range
 Ranges provide simple validation and iteration.
 ```php
 use texdc\range\DateRange;
@@ -42,7 +42,7 @@ foreach ($dateRange as $day) {
 }
 ```
 
-Ranges can also be compared against each other
+Ranges can also be compared against each other.
 ```php
 use texdc\range\IntegerRange;
 
@@ -58,14 +58,14 @@ assert($range3->ends(IntegerRange::combine([$range1, $range3])));
 ```
 See the tests for more comparisons!
 
-#####Enablements
+##### Enablement
 Enablements leverage a range for more robust alternatives to simple boolean flags.
 ```php
 namespace my_shop\marketing\banner;
 
 use texdc\range\DateEnablement;
 
-class DatedAd extends AbstractBannerAd
+class DatedBannerAd extends AbstractBannerAd
 {
     /**
      * @var DateEnablement
