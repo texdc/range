@@ -13,8 +13,7 @@ use DomainException;
 /**
  * Allows inspection of it's contents and comparisons with other similarly typed ranges.
  *
- * @author   George D. Cooksey, III
- * @internal A trait is used to allow type-hinting to 'self' for multiple implementations.
+ * @author George D. Cooksey, III
  */
 abstract class AbstractRange implements RangeInterface
 {

@@ -125,9 +125,7 @@ abstract class AbstractDateRange extends AbstractRange implements DateRangeInter
      */
     public function diff(self $another)
     {
-        $span1 = $this->getSpan()->s;
-        $span2 = $another->getSpan()->s;
-        $diff  = ($span1 >= $span2) ? $span1 - $span2 : $span2 - $span1;
+        $diff = abs($this->getSpan()->s - $another->getSpan()->s);
         return new DateInterval("PT{$diff}S");
     }
 

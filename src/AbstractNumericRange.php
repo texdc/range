@@ -65,10 +65,7 @@ abstract class AbstractNumericRange extends AbstractRange implements NumericRang
      */
     public function getSpan()
     {
-        if ($this->isInverted()) {
-            return $this->start - $this->end;
-        }
-        return $this->end - $this->start;
+        return abs($this->end - $this->start);
     }
 
     /**
@@ -103,9 +100,7 @@ abstract class AbstractNumericRange extends AbstractRange implements NumericRang
      */
     public function diff(self $another)
     {
-        $span1 = $this->getSpan();
-        $span2 = $another->getSpan();
-        return ($span1 >= $span2) ? $span1 - $span2 : $span2 - $span1;
+        return abs($this->getSpan() - $another->getSpan());
     }
 
     /**
