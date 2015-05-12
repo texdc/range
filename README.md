@@ -35,7 +35,7 @@ $dateRange = new DateRange(new DateTime, new DateTime('+1 month'));
 
 assert($dateRange->includes(new DateTime('+3 days'));
 
-echo $dateRange->span()->days;
+echo $dateRange->getSpan()->days;
 
 foreach ($dateRange as $day) {
     echo $day->format('l, F jS, Y');
