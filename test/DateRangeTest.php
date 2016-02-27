@@ -15,7 +15,10 @@ class DateRangeTest extends TestCase
 
     public function testConstructorRequiresDateTimeInterfaces()
     {
-        $this->setExpectedException('PHPUnit_Framework_Error');
+        $exceptionClass = version_compare(PHP_VERSION, '7.0', '<')
+            ? 'PHPUnit_Framework_Error'
+            : 'TypeError';
+        $this->setExpectedException($exceptionClass);
         $range = new DateRange(1, 2);
     }
 
