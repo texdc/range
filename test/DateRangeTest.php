@@ -1,4 +1,10 @@
 <?php
+/**
+ * DateRangeTest.php
+ *
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @copyright 2016 George D. Cooksey, III
+ */
 
 namespace texdc\range\test;
 
@@ -15,7 +21,10 @@ class DateRangeTest extends TestCase
 
     public function testConstructorRequiresDateTimeInterfaces()
     {
-        $this->setExpectedException('PHPUnit_Framework_Error');
+        $exceptionClass = version_compare(PHP_VERSION, '7.0', '<')
+            ? 'PHPUnit_Framework_Error'
+            : 'TypeError';
+        $this->setExpectedException($exceptionClass);
         $range = new DateRange(1, 2);
     }
 

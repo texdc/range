@@ -2,7 +2,7 @@
 /**
  * NumericRangeInterface.php
  *
- * @copyright 2015 George D. Cooksey, III
+ * @copyright 2016 George D. Cooksey, III
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 
@@ -17,6 +17,7 @@ interface NumericRangeInterface extends RangeInterface
 {
     /**
      * default iterator step increment
+     *
      * @var int
      */
     const DEFAULT_STEP = 1;

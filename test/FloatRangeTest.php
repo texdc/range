@@ -1,4 +1,10 @@
 <?php
+/**
+ * FloatRangeTest.php
+ *
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @copyright 2016 George D. Cooksey, III
+ */
 
 namespace texdc\range\test;
 
