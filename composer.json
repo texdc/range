@@ -2,28 +2,24 @@
     "name": "texdc/range",
     "description": "A library of range objects",
     "authors": [
-        {"name": "George D. Cooksey, III", "email": "texdc3@gmail.com"}
+        { "name": "George D. Cooksey, III", "email": "texdc3@gmail.com" }
     ],
     "license": "MIT",
     "keywords": ["range", "daterange", "date range", "ddd", "value object"],
     "require": {
-        "php": "~5.4"
+        "php": "~5.4 || ~7.0"
     },
     "require-dev": {
         "phpunit/phpunit": "@stable",
-        "satooshi/php-coveralls": "~0.6",
-        "squizlabs/php_codesniffer": "~1.4",
+        "satooshi/php-coveralls": "~1.0",
+        "squizlabs/php_codesniffer": "~2.5",
         "phpmd/phpmd": "~2.0",
         "halleck45/phpmetrics": "*"
     },
     "autoload": {
-        "psr-4": {
-            "texdc\\range\\": "src/"
-        }
+        "psr-4": { "texdc\\range\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": {
-            "texdc\\range\\test\\": "test/"
-        }
+        "psr-4": { "texdc\\range\\test\\": "test/" }
     }
 }
