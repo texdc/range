@@ -1,10 +1,10 @@
 range
 =====
 ```
-Oh, give me a home where the buffalo roam,
-Where the deer and the antelope play,
+Oh, give me a home where the buffalo roam
+Where the deer and the antelope play
 Where seldom is heard a discouraging word
-And the skies are not cloudy all day.
+And the skies are not cloudy all day
 ```
 -- [Home on the Range](http://en.wikipedia.org/wiki/Home_on_the_Range)
 
@@ -17,11 +17,9 @@ Sadly, that link is now dead.  If you find it's replacement, please let me know.
 
 install
 -------
-Composer:
-```json
-"require": {
-    "texdc/range": "@stable"
-}
+[Composer](https://getcomposer.org):
+```sh
+composer require texdc/range @stable
 ```
 
 examples
@@ -33,7 +31,7 @@ use texdc\range\DateRange;
 
 $dateRange = new DateRange(new DateTime, new DateTime('+1 month'));
 
-assert($dateRange->includes(new DateTime('+3 days'));
+assert($dateRange->includes(new DateTime('+3 days')));
 
 echo $dateRange->getSpan()->days;
 
@@ -61,8 +59,6 @@ See the tests for more comparisons!
 ##### Enablement
 Enablements leverage a range for more robust alternatives to simple boolean flags.
 ```php
-namespace my_shop\marketing\banner;
-
 use texdc\range\DateEnablement;
 
 class DatedBannerAd extends AbstractBannerAd
