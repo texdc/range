@@ -17,6 +17,7 @@ interface NumericRangeInterface extends RangeInterface
 {
     /**
      * default iterator step increment
+     *
      * @var int
      */
     const DEFAULT_STEP = 1;
