@@ -1,7 +1,7 @@
 <?php
 /**
  * NumericEnablement.php
- * 
+ *
  * @copyright 2015 George D. Cooksey, III
  * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
@@ -10,7 +10,7 @@ namespace texdc\range;
 
 /**
  * A number-based enablement.
- * 
+ *
  * @author George D. Cooksey, III
  */
 final class NumericEnablement implements EnablementInterface
@@ -19,7 +19,7 @@ final class NumericEnablement implements EnablementInterface
      * @var NumericRangeInterface
      */
     private $numberRange;
-    
+
     /**
      * @param NumericRangeInterface $aNumericRange
      */
@@ -27,7 +27,7 @@ final class NumericEnablement implements EnablementInterface
     {
         $this->numberRange = $aNumericRange;
     }
-    
+
     /**
      * @param  number $anAmount
      * @return bool
