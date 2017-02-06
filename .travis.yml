@@ -1,24 +1,25 @@
 language: php
 
 php:
-  - 5.6
   - 7.0
+  - 7.1
+  - 7.2
   - hhvm
 
 matrix:
   fast_finish: true
   allow_failures:
+    - php: 7.2
     - php: hhvm
-  
+
 before_script:
-  - composer self-update
   - composer install --dev --prefer-source
-  
+
 script:
   - mkdir -p build/logs
   - vendor/bin/phpunit
   - vendor/bin/phpcs --standard=PSR2 src/ test/
-  
+
 after_script:
   - sh .travis.coverage.sh
   - vendor/bin/phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
