@@ -8,7 +8,7 @@
 
 namespace texdc\range\test;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 class AbstractNumericRangeTest extends TestCase
 {

@@ -8,7 +8,7 @@
 
 namespace texdc\range\test;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use texdc\range\IntegerRange;
 
 class IntegerRangeTest extends TestCase
@@ -75,7 +75,7 @@ class IntegerRangeTest extends TestCase
 
     public function testGetIteratorRequiresNumericStep()
     {
-        $this->setExpectedException(
+        $this->expectException(
             'InvalidArgumentException',
             'A numeric (int, float) step value is required'
         );

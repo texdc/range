@@ -8,7 +8,7 @@
 
 namespace texdc\range\test;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use texdc\range\TimeRange;
 
 class TimeRangeTest extends TestCase
