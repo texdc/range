@@ -5,7 +5,7 @@
         { "name": "George D. Cooksey, III", "email": "texdc3@gmail.com" }
     ],
     "license": "MIT",
-    "keywords": ["range", "daterange", "date range", "ddd", "value object"],
+    "keywords": ["range", "daterange", "date range", "enablement"],
     "require": {
         "php": "~7.0"
     },
@@ -23,8 +23,9 @@
         "psr-4": { "texdc\\range\\test\\": "test/" }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit",
-        "phpmd": "vendor/bin/phpmd src/,test/ text codesize,unusedcode,naming",
+        "test":    "vendor/bin/phpunit",
+        "cs":      "vendor/bin/phpcs --standard=PSR2 src/ test/",
+        "md":      "vendor/bin/phpmd src/,test/ text cleancode,codesize,design,naming,unusedcode",
         "metrics": "vendor/bin/phpmetrics --report-cli src/"
     }
 }
