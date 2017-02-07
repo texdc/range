@@ -8,7 +8,7 @@
 
 namespace texdc\range;
 
-use DateTime;
+use DateTimeInterface;
 
 /**
  * A date-based enablement.
@@ -31,12 +31,11 @@ final class DateEnablement implements EnablementInterface
     }
 
     /**
-     * @param  DateTime|null $onDate optional, will default to 'now'
+     * @param  DateTimeInterface|null $onDate optional, will default to 'now'
      * @return bool
      */
-    public function isEnabled(DateTime $onDate = null) : bool
+    public function isEnabled(DateTimeInterface $onDate = null) : bool
     {
-        $onDate = $onDate ?: new DateTime;
-        return $this->dateRange->includes($onDate);
+        return $this->dateRange->includes($onDate ?? new DateTime);
     }
 }
