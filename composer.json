@@ -24,8 +24,8 @@
     },
     "scripts": {
         "test":    "vendor/bin/phpunit",
-        "cs":      "vendor/bin/phpcs --standard=PSR2 src/ test/",
-        "md":      "vendor/bin/phpmd src/,test/ text cleancode,codesize,design,naming,unusedcode",
+        "style":   "vendor/bin/phpcs --standard=PSR2 src/ test/",
+        "check":   "vendor/bin/phpmd src/,test/ text cleancode,codesize,design,naming,unusedcode",
         "metrics": "vendor/bin/phpmetrics --report-cli src/"
     }
 }

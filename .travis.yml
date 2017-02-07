@@ -12,14 +12,14 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
-  - composer update --dev --prefer-stable
+  - composer update --prefer-stable
 
 script:
   - mkdir -p build/logs
   - composer test
-  - composer cs
+  - composer style
 
 after_script:
   - sh .travis.coverage.sh
-  - composer md
+  - composer check
   - composer metrics
