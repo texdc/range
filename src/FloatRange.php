@@ -19,9 +19,9 @@ final class FloatRange extends AbstractNumericRange
      * @param float $start
      * @param float $end
      */
-    public function __construct($start, $end)
+    public function __construct(float $start, float $end)
     {
-        $this->start = (float) $start;
-        $this->end   = (float) $end;
+        $this->start = $start;
+        $this->end   = $end;
     }
 }

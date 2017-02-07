@@ -18,13 +18,13 @@ interface NumericRangeInterface extends RangeInterface
     /**
      * default iterator step increment
      *
-     * @var int
+     * @var float
      */
     const DEFAULT_STEP = 1;
 
     /**
-     * @param  number $aValue
+     * @param  float $aValue will be coerced to int, if necessary
      * @return bool
      */
-    public function includes($aValue);
+    public function includes(float $aValue) : bool;
 }

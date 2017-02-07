@@ -19,19 +19,19 @@ use InvalidArgumentException;
 abstract class AbstractNumericRange extends AbstractRange implements NumericRangeInterface
 {
     /**
-     * @param  number $aValue
+     * @param  float $aValue will be coerced to int, if necessary
      * @return self
      */
-    public static function from($aValue)
+    public static function from(float $aValue) : self
     {
         return new static($aValue, PHP_INT_MAX);
     }
 
     /**
-     * @param  number $aValue
+     * @param  float $aValue will be coerced to int, if necessary
      * @return self
      */
-    public static function to($aValue)
+    public static function unto(float $aValue) : self
     {
         return new static(-PHP_INT_MAX, $aValue);
     }
@@ -39,13 +39,13 @@ abstract class AbstractNumericRange extends AbstractRange implements NumericRang
     /**
      * @return self
      */
-    public static function void()
+    public static function void() : self
     {
         return new static(0, 0);
     }
 
     /**
-     * @return number
+     * @return numeric
      */
     public function getStart()
     {
@@ -53,7 +53,7 @@ abstract class AbstractNumericRange extends AbstractRange implements NumericRang
     }
 
     /**
-     * @return number
+     * @return numeric
      */
     public function getEnd()
     {
@@ -61,7 +61,7 @@ abstract class AbstractNumericRange extends AbstractRange implements NumericRang
     }
 
     /**
-     * @return number
+     * @return numeric
      */
     public function getSpan()
     {
@@ -69,24 +69,19 @@ abstract class AbstractNumericRange extends AbstractRange implements NumericRang
     }
 
     /**
-     * @param  number $step the interval amount
+     * @param  float $step the interval amount
      * @return ArrayIterator
      */
-    public function getIterator($step = self::DEFAULT_STEP)
+    public function getIterator(float $step = self::DEFAULT_STEP) : ArrayIterator
     {
-        if (!is_numeric($step)) {
-            throw new InvalidArgumentException(
-                'A numeric (int, float) step value is required'
-            );
-        }
         return new ArrayIterator(range($this->start, $this->end, $step));
     }
 
     /**
-     * @param  number $aValue
+     * @param  float $aValue will be coerced to int, if necessary
      * @return bool
      */
-    public function includes($aValue)
+    public function includes(float $aValue) : bool
     {
         if ($this->isInverted()) {
             return $aValue <= $this->start && $aValue >= $this->end;
@@ -96,7 +91,7 @@ abstract class AbstractNumericRange extends AbstractRange implements NumericRang
 
     /**
      * @param  self $another
-     * @return number
+     * @return numeric
      */
     public function diff(self $another)
     {
@@ -106,7 +101,7 @@ abstract class AbstractNumericRange extends AbstractRange implements NumericRang
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString() : string
     {
         return "{$this->start} - {$this->end}";
     }
