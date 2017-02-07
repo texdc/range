@@ -18,7 +18,7 @@ use DateTime;
 final class DateEnablement implements EnablementInterface
 {
     /**
-     * @var DateRange
+     * @var DateRangeInterface
      */
     private $dateRange;
 
@@ -34,7 +34,7 @@ final class DateEnablement implements EnablementInterface
      * @param  DateTime|null $onDate optional, will default to 'now'
      * @return bool
      */
-    public function isEnabled(DateTime $onDate = null)
+    public function isEnabled(DateTime $onDate = null) : bool
     {
         $onDate = $onDate ?: new DateTime;
         return $this->dateRange->includes($onDate);

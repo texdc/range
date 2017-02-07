@@ -18,5 +18,5 @@ interface EnablementInterface
     /**
      * @return bool
      */
-    public function isEnabled();
+    public function isEnabled() : bool;
 }
