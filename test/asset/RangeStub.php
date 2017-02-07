@@ -18,7 +18,7 @@ class RangeStub extends AbstractRange
         $this->end   = $anEnd;
     }
 
-    public static function void()
+    public static function void() : self
     {
         return new static(0, 0);
     }
@@ -46,7 +46,7 @@ class RangeStub extends AbstractRange
         // no op
     }
 
-    public function includes($aValue)
+    public function includes($aValue) : bool
     {
         if ($this->isInverted()) {
             return $this->end < $aValue && $this->start > $aValue;

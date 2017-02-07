@@ -20,11 +20,6 @@ use IteratorAggregate;
 interface RangeInterface extends IteratorAggregate
 {
     /**
-     * @return self
-     */
-    public static function void();
-
-    /**
      * @return mixed
      */
     public function getStart();
@@ -42,10 +37,10 @@ interface RangeInterface extends IteratorAggregate
     /**
      * @return bool
      */
-    public function isEmpty();
+    public function isEmpty() : bool;
 
     /**
      * @return bool
      */
-    public function isInverted();
+    public function isInverted() : bool;
 }
