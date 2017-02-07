@@ -15,4 +15,10 @@ namespace texdc\range;
  */
 final class DateRange extends AbstractDateRange
 {
+    /**#@+
+     * @var string
+     */
+    const DEFAULT_START = '0000-00-00';
+    const DEFAULT_END   = '9999-12-31';
+    /**#@- */
 }

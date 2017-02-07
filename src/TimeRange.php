@@ -28,16 +28,16 @@ final class TimeRange extends AbstractDateRange
     /**
      * @return int
      */
-    public function getStartTimestamp()
+    public function getStartTimestamp() : int
     {
-        return (int) $this->start->format(static::TIMESTAMP_FORMAT);
+        return $this->start->format(static::TIMESTAMP_FORMAT);
     }
 
     /**
      * @return int
      */
-    public function getEndTimestamp()
+    public function getEndTimestamp() : int
     {
-        return (int) $this->end->format(static::TIMESTAMP_FORMAT);
+        return $this->end->format(static::TIMESTAMP_FORMAT);
     }
 }

@@ -21,10 +21,7 @@ class DateRangeTest extends TestCase
 
     public function testConstructorRequiresDateTimeInterfaces()
     {
-        $exceptionClass = version_compare(PHP_VERSION, '7.0', '<')
-            ? 'PHPUnit_Framework_Error'
-            : 'TypeError';
-        $this->expectException($exceptionClass);
+        $this->expectException('TypeError');
         $range = new DateRange(1, 2);
     }
 
@@ -36,7 +33,7 @@ class DateRangeTest extends TestCase
 
     public function testUntoUsesDefaultStart()
     {
-        $range = DateRange::to(new DateTime);
+        $range = DateRange::unto(new DateTime);
         $this->assertEquals(new DateTime(DateRange::DEFAULT_START), $range->getStart());
     }
 

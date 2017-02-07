@@ -8,7 +8,7 @@
 
 namespace texdc\range;
 
-use DateTime;
+use DateTimeInterface;
 
 /**
  * A range compsed of DateTimeInterface instances
@@ -25,8 +25,8 @@ interface DateRangeInterface extends RangeInterface
     /**#@- */
 
     /**
-     * @param  DateTime $aDate
+     * @param  DateTimeInterface $aDate
      * @return bool
      */
-    public function includes(DateTime $aDate);
+    public function includes(DateTimeInterface $aDate) : bool;
 }
