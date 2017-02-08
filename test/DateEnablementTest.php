@@ -9,7 +9,7 @@
 namespace texdc\range\test;
 
 use DateTime;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use texdc\range\DateEnablement;
 
 class DateEnablementTest extends TestCase

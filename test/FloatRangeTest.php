@@ -8,7 +8,7 @@
 
 namespace texdc\range\test;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use texdc\range\FloatRange;
 
 class FloatRangeTest extends TestCase
@@ -21,13 +21,13 @@ class FloatRangeTest extends TestCase
     public function testClassExtendsAbstractNumericRange()
     {
         $range = FloatRange::void();
-        $this->assertInstanceOf('texdc\range\AbstractNumericRange', $range);
+        $this->assertInstanceOf('texdc\range\FloatRange', $range);
     }
 
     public function testConstructorCastsToFloat()
     {
         $range = new FloatRange('1', 53);
-        $this->assertInternalType('float', $range->getStart());
-        $this->assertInternalType('float', $range->getEnd());
+        $this->assertSame(1.0, $range->getStart());
+        $this->assertSame(53.0, $range->getEnd());
     }
 }

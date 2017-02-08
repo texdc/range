@@ -19,23 +19,25 @@ final class MicrotimeRange extends AbstractDateRange
      * @var string
      */
     const DEFAULT_FORMAT   = 'H:i:s.u';
-    const FLOAT_FORMAT     = 'U.u';
     const DEFAULT_INTERVAL = 'PT1U';
+    const DEFAULT_START    = '0000-00-00 00:00:00.000';
+    const DEFAULT_END      = '9999-12-31 23:59:59.999';
+    const FLOAT_FORMAT     = 'U.u';
     /**#@- */
 
     /**
      * @return float
      */
-    public function getStartAsFloat()
+    public function getStartAsFloat() : float
     {
-        return (float) $this->start->format(static::FLOAT_FORMAT);
+        return $this->start->format(static::FLOAT_FORMAT);
     }
 
     /**
      * @return float
      */
-    public function getEndAsFloat()
+    public function getEndAsFloat() : float
     {
-        return (float) $this->end->format(static::FLOAT_FORMAT);
+        return $this->end->format(static::FLOAT_FORMAT);
     }
 }

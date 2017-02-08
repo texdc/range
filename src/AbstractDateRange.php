@@ -11,6 +11,7 @@ namespace texdc\range;
 use DateInterval;
 use DatePeriod;
 use DateTime;
+use DateTimeInterface;
 use InvalidArgumentException;
 
 /**
@@ -20,37 +21,30 @@ use InvalidArgumentException;
  */
 abstract class AbstractDateRange extends AbstractRange implements DateRangeInterface
 {
-    /**#@+
-     * @var string
-     */
-    const DEFAULT_START = '0000-00-00';
-    const DEFAULT_END   = '9999-12-31';
-    /**#@- */
-
     /**
-     * @param DateTime $aStart
-     * @param DateTime $anEnd
+     * @param DateTimeInterface $aStart
+     * @param DateTimeInterface $anEnd
      */
-    public function __construct(DateTime $aStart, DateTime $anEnd)
+    public function __construct(DateTimeInterface $aStart, DateTimeInterface $anEnd)
     {
         $this->start = $aStart;
         $this->end   = $anEnd;
     }
 
     /**
-     * @param  DateTime $aStart
+     * @param  DateTimeInterface $aStart
      * @return self
      */
-    public static function from(DateTime $aStart)
+    public static function from(DateTimeInterface $aStart) : self
     {
         return new static($aStart, new DateTime(static::DEFAULT_END));
     }
 
     /**
-     * @param  DateTime $anEnd
+     * @param  DateTimeInterface $anEnd
      * @return self
      */
-    public static function to(DateTime $anEnd)
+    public static function unto(DateTimeInterface $anEnd) : self
     {
         return new static(new DateTime(static::DEFAULT_START), $anEnd);
     }
@@ -58,7 +52,7 @@ abstract class AbstractDateRange extends AbstractRange implements DateRangeInter
     /**
      * @return self
      */
-    public static function void()
+    public static function void() : self
     {
         $now = new DateTime;
         return new static($now, clone $now);
@@ -67,7 +61,7 @@ abstract class AbstractDateRange extends AbstractRange implements DateRangeInter
     /**
      * @return DateTimeInterface
      */
-    public function getStart()
+    public function getStart() : DateTimeInterface
     {
         return $this->start;
     }
@@ -75,7 +69,7 @@ abstract class AbstractDateRange extends AbstractRange implements DateRangeInter
     /**
      * @return DateTimeInterface
      */
-    public function getEnd()
+    public function getEnd() : DateTimeInterface
     {
         return $this->end;
     }
@@ -83,7 +77,7 @@ abstract class AbstractDateRange extends AbstractRange implements DateRangeInter
     /**
      * @return DateInterval
      */
-    public function getSpan()
+    public function getSpan() : DateInterval
     {
         return $this->start->diff($this->end);
     }
@@ -92,7 +86,7 @@ abstract class AbstractDateRange extends AbstractRange implements DateRangeInter
      * @param  DateInterval|string $anInterval
      * @return DatePeriod
      */
-    public function getIterator($anInterval = self::DEFAULT_INTERVAL)
+    public function getIterator($anInterval = self::DEFAULT_INTERVAL) : DatePeriod
     {
         if (is_string($anInterval)) {
             $anInterval = (strpos($anInterval, 'P') === 0)
@@ -108,10 +102,10 @@ abstract class AbstractDateRange extends AbstractRange implements DateRangeInter
     }
 
     /**
-     * @param  DateTime $aDate
+     * @param  DateTimeInterface $aDate
      * @return bool
      */
-    public function includes(DateTime $aDate)
+    public function includes(DateTimeInterface $aDate) : bool
     {
         if ($this->isInverted()) {
             return $this->start >= $aDate && $this->end <= $aDate;
@@ -123,7 +117,7 @@ abstract class AbstractDateRange extends AbstractRange implements DateRangeInter
      * @param  self $another
      * @return DateInterval
      */
-    public function diff(self $another)
+    public function diff(self $another) : DateInterval
     {
         $diff = abs($this->getSpan()->s - $another->getSpan()->s);
         return new DateInterval("PT{$diff}S");
@@ -132,7 +126,7 @@ abstract class AbstractDateRange extends AbstractRange implements DateRangeInter
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString() : string
     {
         $start = $this->start->format(static::DEFAULT_FORMAT);
         $end   = $this->end->format(static::DEFAULT_FORMAT);

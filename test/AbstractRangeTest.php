@@ -8,7 +8,7 @@
 
 namespace texdc\range\test;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use texdc\range\RangeInterface;
 use texdc\range\AbstractRange;
 use texdc\range\test\asset\RangeStub;
@@ -258,13 +258,13 @@ class AbstractRangeTest extends TestCase
 
     public function testMergeRequiresCongruentRanges()
     {
-        $this->setExpectedException('DomainException', 'Ranges must be congruent');
+        $this->expectException('DomainException', 'Ranges must be congruent');
         RangeStub::merge(RangeStub::void(), new RangeStub(1, 5));
     }
 
     public function testCombineRequiresRangeInstances()
     {
-        $this->setExpectedException('DomainException');
+        $this->expectException('DomainException');
         RangeStub::combine([1, 2, 4]);
     }
 

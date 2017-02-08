@@ -9,7 +9,7 @@
 namespace texdc\range\test;
 
 use DateTime;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use texdc\range\DateRange;
 
 class DateRangeTest extends TestCase
@@ -21,10 +21,7 @@ class DateRangeTest extends TestCase
 
     public function testConstructorRequiresDateTimeInterfaces()
     {
-        $exceptionClass = version_compare(PHP_VERSION, '7.0', '<')
-            ? 'PHPUnit_Framework_Error'
-            : 'TypeError';
-        $this->setExpectedException($exceptionClass);
+        $this->expectException('TypeError');
         $range = new DateRange(1, 2);
     }
 
@@ -34,9 +31,9 @@ class DateRangeTest extends TestCase
         $this->assertEquals(new DateTime(DateRange::DEFAULT_END), $range->getEnd());
     }
 
-    public function testToUsesDefaultStart()
+    public function testUntoUsesDefaultStart()
     {
-        $range = DateRange::to(new DateTime);
+        $range = DateRange::unto(new DateTime);
         $this->assertEquals(new DateTime(DateRange::DEFAULT_START), $range->getStart());
     }
 
@@ -63,7 +60,7 @@ class DateRangeTest extends TestCase
 
     public function testGetIteratorRequiresDateInterval()
     {
-        $this->setExpectedException(
+        $this->expectException(
             'InvalidArgumentException',
             'A valid interval string or DateInterval instance is required'
         );

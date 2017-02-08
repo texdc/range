@@ -29,7 +29,7 @@ abstract class AbstractRange implements RangeInterface
      * @return self
      * @throws DomainException if a list item is not an NumberRange
      */
-    public static function combine(array $rangeList)
+    public static function combine(array $rangeList) : self
     {
         $combined = static::void();
         foreach ($rangeList as $range) {
@@ -49,7 +49,7 @@ abstract class AbstractRange implements RangeInterface
      * @return self
      * @throws DomainException if a gap exists between the ranges
      */
-    public static function merge(self $range1, self $range2)
+    public static function merge(self $range1, self $range2) : self
     {
         if (!$range1->findGapTo($range2)->isEmpty()) {
             throw new DomainException('Ranges must be congruent');
@@ -74,7 +74,7 @@ abstract class AbstractRange implements RangeInterface
      * @param  self $range2
      * @return self
      */
-    private static function contraryMerge(self $range1, self $range2)
+    private static function contraryMerge(self $range1, self $range2) : self
     {
         if ($range1->isInverted()) {
             return new static($range1->end, $range2->end);
@@ -85,7 +85,7 @@ abstract class AbstractRange implements RangeInterface
     /**
      * @return self
      */
-    public function reverse()
+    public function reverse() : self
     {
         return new static($this->end, $this->start);
     }
@@ -93,7 +93,7 @@ abstract class AbstractRange implements RangeInterface
     /**
      * @return bool
      */
-    public function isEmpty()
+    public function isEmpty() : bool
     {
         return $this->start == $this->end;
     }
@@ -101,7 +101,7 @@ abstract class AbstractRange implements RangeInterface
     /**
      * @return bool
      */
-    public function isInverted()
+    public function isInverted() : bool
     {
         return $this->start > $this->end;
     }
@@ -110,7 +110,7 @@ abstract class AbstractRange implements RangeInterface
      * @param  self $another
      * @return bool true if the two ranges 'move' in opposite directions
      */
-    public function isContraryTo(self $another)
+    public function isContraryTo(self $another) : bool
     {
         if ($this->isEmpty() || $another->isEmpty()) {
             return false;
@@ -122,7 +122,7 @@ abstract class AbstractRange implements RangeInterface
      * @param  self $another
      * @return bool
      */
-    public function contains(self $another)
+    public function contains(self $another) : bool
     {
         return $this->includes($another->start) && $this->includes($another->end);
     }
@@ -131,7 +131,7 @@ abstract class AbstractRange implements RangeInterface
      * @param  self $another
      * @return bool
      */
-    public function overlaps(self $another)
+    public function overlaps(self $another) : bool
     {
         return (!$this->contains($another)
             && !$another->contains($this)
@@ -143,7 +143,7 @@ abstract class AbstractRange implements RangeInterface
      * @param  self $another
      * @return bool
      */
-    public function preceeds(self $another)
+    public function preceeds(self $another) : bool
     {
         if ($this->isContraryTo($another)) {
             return $this->start <= $another->start || $this->end <= $another->end;
@@ -158,7 +158,7 @@ abstract class AbstractRange implements RangeInterface
      * @param  self $another
      * @return bool
      */
-    public function follows(self $another)
+    public function follows(self $another) : bool
     {
         if ($this->isContraryTo($another)) {
             return $this->start >= $another->start || $this->end >= $another->end;
@@ -173,7 +173,7 @@ abstract class AbstractRange implements RangeInterface
      * @param  self $another
      * @return bool
      */
-    public function begins(self $another)
+    public function begins(self $another) : bool
     {
         if ($this->isContraryTo($another)) {
             return $this->end == $another->start && $this->start != $another->end;
@@ -185,7 +185,7 @@ abstract class AbstractRange implements RangeInterface
      * @param  self $another
      * @return bool
      */
-    public function ends(self $another)
+    public function ends(self $another) : bool
     {
         if ($this->isContraryTo($another)) {
             return $this->start == $another->end && $this->end != $another->start;
@@ -197,7 +197,7 @@ abstract class AbstractRange implements RangeInterface
      * @param  self $another
      * @return bool
      */
-    public function abuts(self $another)
+    public function abuts(self $another) : bool
     {
         if ($this->isContraryTo($another)) {
             return $this->start == $another->start || $this->end == $another->end;
@@ -209,7 +209,7 @@ abstract class AbstractRange implements RangeInterface
      * @param  self $another
      * @return self
      */
-    public function findGapTo(self $another)
+    public function findGapTo(self $another) : self
     {
         if ($this->abuts($another)
             || $this->contains($another)
@@ -231,7 +231,7 @@ abstract class AbstractRange implements RangeInterface
      * @param  self $another
      * @return self
      */
-    private function findContraryGap(self $another)
+    private function findContraryGap(self $another) : self
     {
         if ($this->isInverted()) {
             return new static($this->start, $another->start);

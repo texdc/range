@@ -8,7 +8,7 @@
 
 namespace texdc\range\test;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use texdc\range\IntegerRange;
 
 class IntegerRangeTest extends TestCase
@@ -21,7 +21,7 @@ class IntegerRangeTest extends TestCase
     public function testClassExtendsAbstractNumericRange()
     {
         $range = IntegerRange::void();
-        $this->assertInstanceOf('texdc\range\AbstractNumericRange', $range);
+        $this->assertInstanceOf('texdc\range\IntegerRange', $range);
     }
 
     public function testConstructCastsToInt()
@@ -38,9 +38,9 @@ class IntegerRangeTest extends TestCase
         $this->assertSame(PHP_INT_MAX, $range->getEnd());
     }
 
-    public function testToUsesNegativeIntMax()
+    public function testUntoUsesNegativeIntMax()
     {
-        $range = IntegerRange::to(10);
+        $range = IntegerRange::unto(10);
         $this->assertSame(-PHP_INT_MAX, $range->getStart());
         $this->assertSame(10, $range->getEnd());
     }
@@ -75,11 +75,8 @@ class IntegerRangeTest extends TestCase
 
     public function testGetIteratorRequiresNumericStep()
     {
-        $this->setExpectedException(
-            'InvalidArgumentException',
-            'A numeric (int, float) step value is required'
-        );
-        IntegerRange::to(10)->getIterator('error');
+        $this->expectException('TypeError');
+        IntegerRange::unto(10)->getIterator('error');
     }
 
     /**
@@ -88,7 +85,7 @@ class IntegerRangeTest extends TestCase
      * @param bool         $result
      * @dataProvider getIncludesRanges
      */
-    public function testIncludesReturnsBool(IntegerRange $range, $value, $result)
+    public function testIncludesReturnsBool(IntegerRange $range, int $value, bool $result)
     {
         $this->assertSame($result, $range->includes($value));
     }

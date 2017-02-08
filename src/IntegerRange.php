@@ -19,9 +19,9 @@ final class IntegerRange extends AbstractNumericRange
      * @param int $start
      * @param int $end
      */
-    public function __construct($start, $end)
+    public function __construct(int $start, int $end)
     {
-        $this->start = (int) $start;
-        $this->end   = (int) $end;
+        $this->start = $start;
+        $this->end   = $end;
     }
 }
