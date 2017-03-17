@@ -27,16 +27,14 @@ abstract class AbstractRange implements RangeInterface
     /**
      * @param  self[] $rangeList
      * @return self
-     * @throws DomainException if a list item is not an NumberRange
+     * @throws DomainException if a list item is not an AbstractRange
      */
     public static function combine(array $rangeList) : self
     {
         $combined = static::void();
         foreach ($rangeList as $range) {
             if (!$range instanceof static) {
-                throw new DomainException(
-                    "Range list must contain only " . __CLASS__ . " instances"
-                );
+                throw new DomainException("Range list must contain only " . __CLASS__ . " instances");
             }
             $combined = static::merge($combined, $range);
         }
@@ -53,17 +51,13 @@ abstract class AbstractRange implements RangeInterface
     {
         if (!$range1->findGapTo($range2)->isEmpty()) {
             throw new DomainException('Ranges must be congruent');
-        }
-        if ($range1->contains($range2)) {
+        } elseif ($range1->contains($range2)) {
             return $range1;
-        }
-        if ($range2->contains($range1)) {
+        } elseif ($range2->contains($range1)) {
             return $range2;
-        }
-        if ($range1->isContraryTo($range2)) {
+        } elseif ($range1->isContraryTo($range2)) {
             return static::contraryMerge($range1, $range2);
-        }
-        if ($range1->overlaps($range2) || $range1->preceeds($range2)) {
+        } elseif ($range1->overlaps($range2) || $range1->preceeds($range2)) {
             return new static($range1->start, $range2->end);
         }
         return new static($range2->start, $range1->end);
@@ -133,8 +127,8 @@ abstract class AbstractRange implements RangeInterface
      */
     public function overlaps(self $another) : bool
     {
-        return (!$this->contains($another)
-            && !$another->contains($this)
+        return (
+            !$this->contains($another) && !$another->contains($this)
             && ($this->includes($another->start) || $this->includes($another->end))
         );
     }
@@ -147,8 +141,7 @@ abstract class AbstractRange implements RangeInterface
     {
         if ($this->isContraryTo($another)) {
             return $this->start <= $another->start || $this->end <= $another->end;
-        }
-        if ($this->isInverted()) {
+        } elseif ($this->isInverted()) {
             return $this->start <= $another->end;
         }
         return $this->end <= $another->start;
@@ -162,8 +155,7 @@ abstract class AbstractRange implements RangeInterface
     {
         if ($this->isContraryTo($another)) {
             return $this->start >= $another->start || $this->end >= $another->end;
-        }
-        if ($this->isInverted()) {
+        } elseif ($this->isInverted()) {
             return $this->end >= $another->start;
         }
         return $this->start >= $another->end;
@@ -211,17 +203,11 @@ abstract class AbstractRange implements RangeInterface
      */
     public function findGapTo(self $another) : self
     {
-        if ($this->abuts($another)
-            || $this->contains($another)
-            || $another->contains($this)
-            || $this->overlaps($another)
-        ) {
+        if ($this->abuts($another) || $this->contains($another) || $another->contains($this) || $this->overlaps($another)) {
             return static::void();
-        }
-        if ($this->isContraryTo($another)) {
+        } elseif ($this->isContraryTo($another)) {
             return $this->findContraryGap($another);
-        }
-        if ($this->follows($another)) {
+        } elseif ($this->follows($another)) {
             return new static($another->end, $this->start);
         }
         return new static($this->end, $another->start);
