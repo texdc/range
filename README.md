@@ -8,8 +8,7 @@ And the skies are not cloudy all day
 ```
 -- [Home on the Range](http://en.wikipedia.org/wiki/Home_on_the_Range)
 
-The inspiration for this library came from a discussion by [Martin Fowler](http://www.martinfowler.com/ap2/range.html).
-Sadly, that link is now dead.  If you find it's replacement, please let me know.
+The inspiration for this library came from a discussion by [Martin Fowler](https://web.archive.org/web/20101220225210/http://martinfowler.com/ap2/range.html).
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Build Status](https://img.shields.io/travis/texdc/range/master.svg?style=flat-square)](https://travis-ci.org/texdc/range)
