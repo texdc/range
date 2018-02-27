@@ -1,13 +1,5 @@
-# Ignore Eclipse files
-.buildpath
-.project
-.settings/
-
 # build files
 vendor/
 composer.lock
 /phpunit.xml
 /build
-
-# bad
-*.DS_Store

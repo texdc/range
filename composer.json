@@ -12,9 +12,7 @@
     "require-dev": {
         "phpunit/phpunit":           "@stable",
         "satooshi/php-coveralls":    "@stable",
-        "squizlabs/php_codesniffer": "@stable",
-        "phpmd/phpmd":               "@stable",
-        "phpmetrics/phpmetrics":     "@stable"
+        "squizlabs/php_codesniffer": "@stable"
     },
     "autoload": {
         "psr-4": { "texdc\\range\\": "src/" }
@@ -23,9 +21,8 @@
         "psr-4": { "texdc\\range\\test\\": "test/" }
     },
     "scripts": {
-        "test":    "vendor/bin/phpunit",
-        "style":   "vendor/bin/phpcs --standard=PSR2 src/ test/",
-        "check":   "vendor/bin/phpmd src/,test/ text cleancode,codesize,design,naming,unusedcode",
-        "metrics": "vendor/bin/phpmetrics --report-cli src/"
+        "test":     "vendor/bin/phpunit",
+        "style":    "vendor/bin/phpcs --standard=PSR2 src/ test/",
+        "coverage": "vendor/bin/php-coveralls"
     }
 }

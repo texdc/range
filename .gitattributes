@@ -4,4 +4,3 @@
 /.travis.coverage.sh export-ignore
 /.travis.yml export-ignore
 /phpunit.xml.dist export-ignore
-/README.md export-ignore
