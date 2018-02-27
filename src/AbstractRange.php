@@ -203,7 +203,10 @@ abstract class AbstractRange implements RangeInterface
      */
     public function findGapTo(self $another) : self
     {
-        if ($this->abuts($another) || $this->contains($another) || $another->contains($this) || $this->overlaps($another)) {
+        if ($this->abuts($another)
+                || $this->contains($another)
+                || $another->contains($this)
+                || $this->overlaps($another)) {
             return static::void();
         } elseif ($this->isContraryTo($another)) {
             return $this->findContraryGap($another);
